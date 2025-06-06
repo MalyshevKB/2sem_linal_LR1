@@ -27,20 +27,14 @@
 
 - Формула:
 
-$$
-
+```math
 \begin{cases}
 
 x = (a + r \cos(\theta/2)) \cos(\theta) \\
-
 y = (a + r \cos(\theta/2)) \sin(\theta) \\
-
 z = b \cdot r \sin(\theta/2)
-
-\end{cases}
-
-$$
-
+\end{cases} 
+```
 - Где:
 
 - \(a, b\) — параметры с слайдеров (`param1`, `param2`),
@@ -94,55 +88,64 @@ app.run() # Запуск визуализации
 
 
 **Матрица камеры по-умолчанию**
-
-$$ C = \begin{pmatrix}
+```math
+ C = \begin{pmatrix}
 50 && 0 && 0 && 0 \\
 0 && 50 && 0 && 0 \\
 0 && 0 && 50 && 0 \\
 0 && 0 && 0 && 50
-\end{pmatrix} $$
-
+\end{pmatrix} 
+```
 
 **Поворот вокруг оси OX**
-$$ R_{x}(\phi) = \begin{pmatrix}
+```math
+R_{x}(\phi) = \begin{pmatrix}
 1 && 0 && 0 && 0 \\
 0 && cos \phi && -\sin \phi && 0 \\
 0 && \sin \phi && \cos \phi && 0 \\
 0 && 0 && 0 && 1
-\end{pmatrix} $$
+\end{pmatrix} \\
 
-$$C' = R_{x}(\phi) \cdot C$$
 
+C' = R_{x}(\phi) \cdot C
+```
 
 **Поворот вокруг оси OY**
-
-$$ R_{x}(\phi) = \begin{pmatrix}
+```math
+R_{x}(\phi) = \begin{pmatrix}
 \cos \phi && 0 && \sin \phi && 0 \\
 0 && 1 && 0 && 0 \\
 -\sin \phi && 0 && \cos \phi && 0 \\
 0 && 0 && 0 && 1
-\end{pmatrix} $$
+\end{pmatrix} \\
 
-$$C' = R_{y}(\phi) \cdot C$$
+
+C' = R_{y}(\phi) \cdot C
+```
 
  **Отрисовка (`render`)**
 1. **Сортировка полигонов** по глубине (по среднему значению $(z)$) для корректного отображения.
 2. **Проецирование 3D → 2D**:
    - Каждая точка преобразуется в экранные координаты:
-     $$[
+     ```math
+     [
      x_{\text{экран}} = x_{\text{3D}} + \frac{\text{ширина}}{2}, \quad y_{\text{экран}} = y_{\text{3D}} + \frac{\text{высота}}{2}
-     ]$$
+     ]
+     ```
 3. **Заливка полигонов** с цветом, зависящим от глубины:
-   $$[
+   ```math
+   [
    \text{color} = \min(255, 10 \cdot |z|)
-   ]$$
+   ]
+   ```
 
 
 **Приближение/отдаление камеры**
+```math
+C' = 1.1C\\
 
-$$C' = 1.1C$$
-
-$$C' = \frac{1}{1.1}C$$
+C' = \frac{1}{1.1}C
+```
 
 
 
